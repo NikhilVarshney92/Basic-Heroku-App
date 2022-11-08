@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import pickle
 
+df = pd.DataFrame({'experience': ['three','four','five','two','seven','three','ten','eleven'],'test_score':[8,8,6,10,9,7,7,7],
+                  'interview_score':[9,6,7,10,6,10,7,8],'salary':[50000,45000,60000,65000,70000,62000,72000,80000]})
+
+df.to_csv('hiring.csv')
+
 dataset = pd.read_csv('hiring.csv')
 
 dataset['experience'].fillna(0, inplace=True)
@@ -29,11 +34,11 @@ from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 
 #Fitting model with trainig data
-regressor.fit(X, y)
+regressor.fit(X.values, y)
 
 # Saving model to disk
 pickle.dump(regressor, open('model.pkl','wb'))
 
 # Loading model to compare the results
-model = pickle.load(open('model.pkl','rb'))
-print(model.predict([[2, 9, 6]]))
+#model = pickle.load(open('model.pkl','rb'))
+#print(model.predict([[2, 9, 6]]))
